@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meus holerites</title>
+<style>
+:root{--bg:#e8edf1;--card:#fff;--ink:#14212b;--muted:#5a6b78;--line:#d3dce3;--accent:#0f5c5c;--neg:#9a3412;--err:#b42318}
+@media (prefers-color-scheme:dark){:root{--bg:#10181e;--card:#18232b;--ink:#e8eef2;--muted:#93a4b1;--line:#2a3a45;--accent:#5fc4c0;--neg:#f2a47c;--err:#ff8f85}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px 16px}
+main{max-width:640px;margin:0 auto}
+h1{font:600 1.5rem/1.2 Georgia,"Times New Roman",serif;margin:0 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px}
+label{display:block;font-weight:600;margin:16px 0 4px}
+input,select{width:100%;padding:10px 12px;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:4px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+button{font:inherit;font-weight:600;padding:10px 16px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer}
+button.ghost{background:transparent;color:var(--accent)}
+form button{margin-top:20px;width:100%}
+.muted{color:var(--muted)}.err{color:var(--err);min-height:1.5em;margin:12px 0 0}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:20px}
+.slip h2{font:600 1.25rem/1.3 Georgia,serif;margin:0}
+.slip .meta{color:var(--muted);font-size:.9rem;margin:2px 0 16px}
+.slip h3{font-size:1rem;margin:20px 0 4px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dotted var(--line);font-variant-numeric:tabular-nums}
+.row.neg span:last-child{color:var(--neg)}
+.net{display:flex;justify-content:space-between;align-items:baseline;margin-top:20px;padding-top:14px;border-top:2px solid var(--ink);font-variant-numeric:tabular-nums}
+.net strong{font:600 1.75rem/1 Georgia,serif;color:var(--accent)}
+.pick{margin-bottom:16px}.pick label{margin-top:0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <section id="login" class="card" aria-labelledby="t-login">
+    <h1 id="t-login">Meus holerites</h1>
+    <p class="muted">Entre com seu e-mail e senha corporativos.</p>
+    <form id="form" novalidate>
+      <label for="email">E-mail</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="password">Senha</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <p id="loginErr" class="err" role="alert"></p>
+      <button type="submit">Entrar</button>
+    </form>
+  </section>
+
+  <section id="app" hidden>
+    <header>
+      <div><h1 id="who"></h1><div id="role" class="muted"></div></div>
+      <button class="ghost" id="logout" type="button">Sair</button>
+    </header>
+    <div class="card">
+      <div class="pick" id="pick" hidden>
+        <label for="comp">Competência</label>
+        <select id="comp"></select>
+      </div>
+      <p id="empty" class="muted" hidden></p>
+      <article id="slip" class="slip" hidden></article>
+      <p id="appErr" class="err" role="alert"></p>
+    </div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const brl = (n) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(n);
+const monthName = (c) => { const [y, m] = c.split('-').map(Number);
+  const s = new Date(y, m - 1, 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }); return s[0].toUpperCase() + s.slice(1); };
+const store = { get: () => sessionStorage.getItem('token'), set: (t) => sessionStorage.setItem('token', t), clear: () => sessionStorage.clear() };
+let payslips = [];
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, { ...opts, headers: { 'Content-Type': 'application/json', ...(store.get() ? { Authorization: 'Bearer ' + store.get() } : {}) } });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) { const e = new Error(body.message || 'Erro inesperado.'); e.status = res.status; throw e; }
+  return body;
+}
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function section(title, items, neg) {
+  const frag = document.createDocumentFragment(); frag.append(el('h3', null, title));
+  items.forEach((i) => { const r = el('div', 'row' + (neg ? ' neg' : '')); r.append(el('span', null, i.description), el('span', null, (neg ? '− ' : '') + brl(i.amount))); frag.append(r); });
+  return frag;
+}
+function render(p) {
+  const s = $('slip'); s.replaceChildren();
+  s.append(el('h2', null, monthName(p.competence)),
+    el('p', 'meta', `Versão ${p.version} · publicado em ${new Date(p.publishedAt).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`),
+    section('Proventos', p.earnings, false), section('Descontos', p.deductions, true));
+  const net = el('div', 'net'); net.append(el('span', null, 'Líquido a receber'), el('strong', null, brl(p.netPay))); s.append(net);
+  s.hidden = false;
+}
+function show(loggedIn) { $('login').hidden = loggedIn; $('app').hidden = !loggedIn; }
+function logout() { store.clear(); show(false); $('password').value = ''; }
+
+async function loadApp(employee) {
+  $('who').textContent = employee.name; $('role').textContent = `Matrícula ${employee.registration} · ${employee.role}`;
+  $('appErr').textContent = ''; show(true);
+  try {
+    const [latest, list] = await Promise.all([api('/api/payslips/latest'), api('/api/payslips')]);
+    payslips = list.payslips;
+    $('empty').hidden = !!latest.payslip; $('empty').textContent = latest.message || '';
+    $('slip').hidden = !latest.payslip; $('pick').hidden = payslips.length < 2;
+    $('comp').replaceChildren(...payslips.map((p) => { const o = el('option', null, monthName(p.competence)); o.value = p.competence; return o; }));
+    if (latest.payslip) render(latest.payslip);
+  } catch (e) { if (e.status === 401) { logout(); $('loginErr').textContent = e.message; } else $('appErr').textContent = e.message; }
+}
+
+$('form').addEventListener('submit', async (ev) => {
+  ev.preventDefault(); $('loginErr').textContent = '';
+  try {
+    const r = await api('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: $('email').value, password: $('password').value }) });
+    store.set(r.token); sessionStorage.setItem('emp', JSON.stringify(r.employee)); loadApp(r.employee);
+  } catch (e) { $('loginErr').textContent = e.message; }
+});
+$('comp').addEventListener('change', () => render(payslips.find((p) => p.competence === $('comp').value)));
+$('logout').addEventListener('click', logout);
+if (store.get()) { try { loadApp(JSON.parse(sessionStorage.getItem('emp'))); } catch { logout(); } }
+</script>
+</body>
+</html>

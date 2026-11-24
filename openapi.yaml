@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: API de Consulta de Holerites
+  version: 1.0.0
+  description: Login do funcionário e consulta dos seus próprios holerites publicados.
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: Autenticação
+  - name: Holerites
+paths:
+  /api/auth/login:
+    post:
+      tags: [Autenticação]
+      summary: Autentica o funcionário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/LoginRequest' }
+      responses:
+        '200':
+          description: Login realizado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LoginResponse' }
+        '400': { $ref: '#/components/responses/Erro' }
+        '401': { $ref: '#/components/responses/Erro' }
+  /api/payslips/latest:
+    get:
+      tags: [Holerites]
+      summary: Holerite mais recente (competência mais recente, última versão publicada)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          description: Retorna o holerite, ou payslip nulo com mensagem informativa quando não há nenhum publicado
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/LatestResponse' }
+        '401': { $ref: '#/components/responses/Erro' }
+  /api/payslips:
+    get:
+      tags: [Holerites]
+      summary: Lista os holerites publicados do funcionário logado (última versão de cada competência)
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          description: Lista ordenada da competência mais recente para a mais antiga
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ListResponse' }
+        '401': { $ref: '#/components/responses/Erro' }
+components:
+  securitySchemes:
+    bearerAuth: { type: http, scheme: bearer, bearerFormat: JWT }
+  responses:
+    Erro:
+      description: Erro
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Message' }
+  schemas:
+    Message:
+      type: object
+      properties:
+        message: { type: string }
+    LoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email: { type: string, example: ana@empresa.com }
+        password: { type: string, example: Senha@123 }
+    LoginResponse:
+      type: object
+      properties:
+        token: { type: string }
+        employee:
+          type: object
+          properties:
+            name: { type: string }
+            registration: { type: string }
+            role: { type: string }
+    Line:
+      type: object
+      properties:
+        description: { type: string }
+        amount: { type: number }
+    Payslip:
+      type: object
+      properties:
+        competence: { type: string, example: 2026-10, description: Formato AAAA-MM }
+        version: { type: integer, example: 2 }
+        publishedAt: { type: string, format: date-time }
+        earnings: { type: array, items: { $ref: '#/components/schemas/Line' } }
+        deductions: { type: array, items: { $ref: '#/components/schemas/Line' } }
+        grossPay: { type: number }
+        totalDeductions: { type: number }
+        netPay: { type: number }
+    LatestResponse:
+      type: object
+      properties:
+        payslip: { nullable: true, allOf: [{ $ref: '#/components/schemas/Payslip' }] }
+        message: { type: string, nullable: true }
+    ListResponse:
+      type: object
+      properties:
+        payslips: { type: array, items: { $ref: '#/components/schemas/Payslip' } }
+        message: { type: string, nullable: true }
