@@ -6,7 +6,7 @@ const { seed } = require('./seed');
 const PORT = process.env.PORT || 3000;
 
 (async () => {
-  const mongod = await MongoMemoryServer.create();
+  const mongod = await MongoMemoryServer.create({ instance: { launchTimeout: 60000 } });
   await mongoose.connect(mongod.getUri(), { dbName: 'holerites' });
   await seed();
   const server = app.listen(PORT, () => {
