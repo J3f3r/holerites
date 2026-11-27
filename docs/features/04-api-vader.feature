@@ -59,8 +59,8 @@ Funcionalidade: Exploração da API com a heurística VADER
     Dado que Ana fez login
     Quando 10 conexões simultâneas consultam "/api/payslips/latest" durante 10 segundos
     Então não há respostas com erro
-    E a latência do percentil 95 é inferior a 500 ms
-    # Limite proposto; será ajustado após a primeira medição, e o valor final registrado no relatório
+    E a latência do percentil 97,5 é inferior a 500 ms
+    # Limite proposto. A ferramenta (autocannon) reporta o percentil 97,5, mais rigoroso que o 95 inicialmente previsto. Ajustar após a primeira medição e registrar o valor final no relatório
 
   @CT-API-08 @CND-18 @VADER-R @prioridade-baixa @api
   Cenário: Login repetido em sequência

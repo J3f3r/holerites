@@ -1,0 +1,56 @@
+{
+  "data": "2026-11-27T18:31:44.595Z",
+  "conexoes": 10,
+  "duracaoS": 10,
+  "limiteMs": 500,
+  "resultados": [
+    {
+      "cenario": "CT-API-07 GET /api/payslips/latest",
+      "requisicoes": 2696,
+      "reqPorSegundo": 269.61,
+      "status2xx": 2696,
+      "statusNao2xx": 0,
+      "erros": 0,
+      "timeouts": 0,
+      "latenciaMediaMs": 36.73,
+      "p50Ms": 31,
+      "p97_5Ms": 84,
+      "p99Ms": 108,
+      "maxMs": 370,
+      "criterio": "sem erros e p97,5 < 500 ms",
+      "aprovado": true
+    },
+    {
+      "cenario": "CT-API-07 GET /api/payslips",
+      "requisicoes": 3438,
+      "reqPorSegundo": 343.8,
+      "status2xx": 3438,
+      "statusNao2xx": 0,
+      "erros": 0,
+      "timeouts": 0,
+      "latenciaMediaMs": 28.64,
+      "p50Ms": 26,
+      "p97_5Ms": 53,
+      "p99Ms": 67,
+      "maxMs": 128,
+      "criterio": "sem erros e p97,5 < 500 ms",
+      "aprovado": true
+    },
+    {
+      "cenario": "Informativo: POST /api/auth/login",
+      "requisicoes": 48,
+      "reqPorSegundo": 4.8,
+      "status2xx": 48,
+      "statusNao2xx": 0,
+      "erros": 0,
+      "timeouts": 0,
+      "latenciaMediaMs": 1924.38,
+      "p50Ms": 1861,
+      "p97_5Ms": 2538,
+      "p99Ms": 2538,
+      "maxMs": 2538,
+      "criterio": "medição informativa (sem limite)",
+      "aprovado": null
+    }
+  ]
+}
