@@ -1,0 +1,11 @@
+=== CT-API-01 (2026-11-26 21:46:58) ===
+--- PUT localhost:3000/api/payslips ---
+{"message":"Recurso não encontrado."}
+[status 404]
+--- DELETE localhost:3000/api/payslips ---
+{"message":"Recurso não encontrado."}
+[status 404]
+--- POST localhost:3000/api/payslips/latest ---
+{"message":"Recurso não encontrado."}
+[status 404]
+

@@ -1,0 +1,127 @@
+=== CT-AUT-05 (2026-11-26 21:43:09) ===
+--- ANA ---
+{
+ "payslips": [
+  {
+   "competence": "2026-10",
+   "version": 2,
+   "publishedAt": "2026-11-05T00:00:00.000Z",
+   "earnings": [
+    {
+     "description": "Salário base",
+     "amount": 6500,
+     "_id": "6b08892c27e9163527d9c3db"
+    },
+    {
+     "description": "Ajuste retroativo",
+     "amount": 350,
+     "_id": "6b08892c27e9163527d9c3dc"
+    }
+   ],
+   "deductions": [
+    {
+     "description": "INSS",
+     "amount": 585,
+     "_id": "6b08892c27e9163527d9c3dd"
+    },
+    {
+     "description": "IRRF",
+     "amount": 520,
+     "_id": "6b08892c27e9163527d9c3de"
+    }
+   ],
+   "grossPay": 6850,
+   "totalDeductions": 1105,
+   "netPay": 5745
+  },
+  {
+   "competence": "2026-09",
+   "version": 1,
+   "publishedAt": "2026-10-05T00:00:00.000Z",
+   "earnings": [
+    {
+     "description": "Salário base",
+     "amount": 6500,
+     "_id": "6b08892c27e9163527d9c3d3"
+    }
+   ],
+   "deductions": [
+    {
+     "description": "INSS",
+     "amount": 585,
+     "_id": "6b08892c27e9163527d9c3d4"
+    },
+    {
+     "description": "IRRF",
+     "amount": 520,
+     "_id": "6b08892c27e9163527d9c3d5"
+    }
+   ],
+   "grossPay": 6500,
+   "totalDeductions": 1105,
+   "netPay": 5395
+  }
+ ],
+ "message": null
+}
+--- BRUNO ---
+{
+ "payslips": [
+  {
+   "competence": "2026-10",
+   "version": 1,
+   "publishedAt": "2026-11-05T00:00:00.000Z",
+   "earnings": [
+    {
+     "description": "Salário base",
+     "amount": 8200,
+     "_id": "6b08892c27e9163527d9c3ec"
+    }
+   ],
+   "deductions": [
+    {
+     "description": "INSS",
+     "amount": 738,
+     "_id": "6b08892c27e9163527d9c3ed"
+    },
+    {
+     "description": "IRRF",
+     "amount": 656,
+     "_id": "6b08892c27e9163527d9c3ee"
+    }
+   ],
+   "grossPay": 8200,
+   "totalDeductions": 1394,
+   "netPay": 6806
+  },
+  {
+   "competence": "2026-09",
+   "version": 1,
+   "publishedAt": "2026-10-05T00:00:00.000Z",
+   "earnings": [
+    {
+     "description": "Salário base",
+     "amount": 8200,
+     "_id": "6b08892c27e9163527d9c3e4"
+    }
+   ],
+   "deductions": [
+    {
+     "description": "INSS",
+     "amount": 738,
+     "_id": "6b08892c27e9163527d9c3e5"
+    },
+    {
+     "description": "IRRF",
+     "amount": 656,
+     "_id": "6b08892c27e9163527d9c3e6"
+    }
+   ],
+   "grossPay": 8200,
+   "totalDeductions": 1394,
+   "netPay": 6806
+  }
+ ],
+ "message": null
+}
+

@@ -1,0 +1,4 @@
+=== CT-API-05 (2026-11-26 21:47:08) ===
+{"message":"Informe e-mail e senha."}
+[status 400]
+

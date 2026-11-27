@@ -1,0 +1,4 @@
+=== CT-API-02 (2026-11-26 21:47:02) ===
+{"message":"Recurso não encontrado."}
+[status 404]
+

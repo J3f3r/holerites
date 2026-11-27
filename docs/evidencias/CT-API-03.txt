@@ -1,0 +1,4 @@
+=== CT-API-03 (2026-11-26 21:47:04) ===
+{"message":"Erro interno."}
+[status 500]
+

@@ -1,0 +1,4 @@
+=== CT-AUT-02-bearer-abc123 (2026-11-26 21:42:56) ===
+{"message":"Sessão inválida ou expirada. Faça login novamente."}
+[status 401]
+

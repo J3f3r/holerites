@@ -1,0 +1,4 @@
+=== CT-LOG-12-senha-num (2026-11-26 21:36:01) ===
+{"message":"Informe e-mail e senha."}
+[status 400]
+

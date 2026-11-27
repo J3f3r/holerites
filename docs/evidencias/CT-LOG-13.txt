@@ -1,0 +1,8 @@
+=== CT-LOG-13 (2026-11-26 21:41:40) ===
+--- CT-LOG-03 ---
+{"message":"E-mail ou senha inválidos."}
+[status 401]
+--- CT-LOG-07 ---
+{"message":"E-mail ou senha inválidos."}
+[status 401]
+
