@@ -1,0 +1,8 @@
+=== CT-AUT-06 (2026-11-26 21:43:15) ===
+--- lista /api/payslips ---
+{"payslips":[{"competence":"2026-10","version":2,"publishedAt":"2026-11-05T00:00:00.000Z","earnings":[{"description":"Salário base","amount":6500,"_id":"6b08892c27e9163527d9c3db"},{"description":"Ajuste retroativo","amount":350,"_id":"6b08892c27e9163527d9c3dc"}],"deductions":[{"description":"INSS","amount":585,"_id":"6b08892c27e9163527d9c3dd"},{"description":"IRRF","amount":520,"_id":"6b08892c27e9163527d9c3de"}],"grossPay":6850,"totalDeductions":1105,"netPay":5745},{"competence":"2026-09","version":1,"publishedAt":"2026-10-05T00:00:00.000Z","earnings":[{"description":"Salário base","amount":6500,"_id":"6b08892c27e9163527d9c3d3"}],"deductions":[{"description":"INSS","amount":585,"_id":"6b08892c27e9163527d9c3d4"},{"description":"IRRF","amount":520,"_id":"6b08892c27e9163527d9c3d5"}],"grossPay":6500,"totalDeductions":1105,"netPay":5395}],"message":null}
+[status 200]
+--- /api/payslips/latest ---
+{"payslip":{"competence":"2026-10","version":2,"publishedAt":"2026-11-05T00:00:00.000Z","earnings":[{"description":"Salário base","amount":6500,"_id":"6b08892c27e9163527d9c3db"},{"description":"Ajuste retroativo","amount":350,"_id":"6b08892c27e9163527d9c3dc"}],"deductions":[{"description":"INSS","amount":585,"_id":"6b08892c27e9163527d9c3dd"},{"description":"IRRF","amount":520,"_id":"6b08892c27e9163527d9c3de"}],"grossPay":6850,"totalDeductions":1105,"netPay":5745},"message":null}
+[status 200]
+

@@ -1,0 +1,4 @@
+=== CT-AUT-02-bearer-vazio (2026-11-26 21:42:55) ===
+{"message":"Autenticação necessária."}
+[status 401]
+

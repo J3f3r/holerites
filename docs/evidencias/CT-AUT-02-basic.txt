@@ -1,0 +1,4 @@
+=== CT-AUT-02-basic (2026-11-26 21:42:58) ===
+{"message":"Autenticação necessária."}
+[status 401]
+
