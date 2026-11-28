@@ -1,6 +1,6 @@
 // Testes de API (Node test runner nativo, sem dependências extras).
 // Pré-requisito: aplicação rodando em http://localhost:3000 (npm start), com a massa original.
-// Executar: node --test --test-reporter=spec tests/api/
+// Executar: node --test --test-reporter=spec tests/api/api.test.js
 // Testes com { todo: 'BUG-xxx' } cobrem defeitos já reportados: aparecem como "todo" e não quebram a execução.
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -21,7 +21,7 @@ async function call(method, path, { token, headers = {}, json, raw } = {}) {
   const res = await fetch(BASE + path, { method, headers: h, body });
   const text = await res.text();
   let data = null; try { data = JSON.parse(text); } catch { /* corpo não JSON */ }
-  return { status: res.status, text, data, ms: performance.now() - t0 };
+  return { status: res.status, text, data, headers: res.headers, ms: performance.now() - t0 };
 }
 const login = (email, password = PASSWORD) => call('POST', '/api/auth/login', { json: { email, password } });
 const tokenOf = async (email) => (await login(email)).data.token;
@@ -210,4 +210,25 @@ test('CT-API-08 20 logins seguidos', async (t) => {
   const tempos = [];
   for (let i = 0; i < 20; i++) { const r = await login('ana@empresa.com'); assert.equal(r.status, 200); tempos.push(r.ms); }
   t.diagnostic(`menor ${Math.min(...tempos).toFixed(0)} ms, maior ${Math.max(...tempos).toFixed(0)} ms`);
+});
+
+// ---------- Achados das sessões exploratórias ----------
+test('EXP-API prefixo "bearer" em minúsculas deveria ser aceito (esquema HTTP não diferencia maiúsculas)', { todo: 'BUG-008' }, async () => {
+  const token = await tokenOf('ana@empresa.com');
+  const r = await call('GET', '/api/payslips', { headers: { Authorization: `bearer ${token}` } });
+  assert.equal(r.status, 200);
+});
+test('EXP-API token copiado antes do logout no site continua aceito (a confirmar: apenas registra)', async (t) => {
+  const token = await tokenOf('ana@empresa.com'); // o logout do site só limpa o Session Storage; a API não tem logout
+  const r = await call('GET', '/api/payslips', { token });
+  t.diagnostic(`status observado: ${r.status}`);
+  assert.ok([200, 401].includes(r.status));
+});
+test('EXP-API corpo acima do limite deveria retornar 413', { todo: 'BUG-005' }, async () => {
+  const r = await call('POST', '/api/auth/login', { json: { email: 'a'.repeat(200000), password: PASSWORD } });
+  assert.equal(r.status, 413);
+});
+test('EXP-API a resposta não deveria expor X-Powered-By', { todo: 'BUG-007' }, async () => {
+  const r = await call('GET', '/api/rota-inexistente');
+  assert.equal(r.headers.get('x-powered-by'), null);
 });
