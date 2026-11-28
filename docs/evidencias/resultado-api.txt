@@ -1,62 +1,67 @@
-[32m✔ CT-DOC-02 YAML da especificação é renderizado [90m(233.2091ms)[39m[39m
-[32m✔ CT-LOG-01 login válido: Ana Souza [90m(247.7553ms)[39m[39m
-[32m✔ CT-LOG-01 login válido: Bruno Lima [90m(242.3513ms)[39m[39m
-[32m✔ CT-LOG-01 login válido: Carla Mendes [90m(213.0734ms)[39m[39m
-[32m✔ CT-LOG-02 e-mail com maiúsculas e espaços (a confirmar: apenas registra) [90m(226.5338ms)[39m[39m
+[32m✔ CT-DOC-02 YAML da especificação é renderizado [90m(227.4975ms)[39m[39m
+[32m✔ CT-LOG-01 login válido: Ana Souza [90m(228.5848ms)[39m[39m
+[32m✔ CT-LOG-01 login válido: Bruno Lima [90m(250.0909ms)[39m[39m
+[32m✔ CT-LOG-01 login válido: Carla Mendes [90m(169.5136ms)[39m[39m
+[32m✔ CT-LOG-02 e-mail com maiúsculas e espaços (a confirmar: apenas registra) [90m(176.0916ms)[39m[39m
 [34mℹ status observado: 200[39m
-[32m✔ CT-LOG-03 senha incorreta [90m(235.0864ms)[39m[39m
-[32m✔ CT-LOG-04 caixa diferente [90m(229.9686ms)[39m[39m
-[32m✔ CT-LOG-05 espaço no final [90m(230.1509ms)[39m[39m
-[32m✔ CT-LOG-06 senha vazia [90m(271.1853ms)[39m[39m
-[32m✔ CT-LOG-07 e-mail não cadastrado [90m(9.6842ms)[39m[39m
-[32m✔ CT-LOG-08 e-mail em formato inválido [90m(7.8469ms)[39m[39m
-[32m✔ CT-LOG-09 e-mail vazio [90m(10.2579ms)[39m[39m
-[32m✔ CT-LOG-10 sem o campo senha [90m(13.3041ms)[39m[39m
-[32m✔ CT-LOG-11 sem o campo e-mail [90m(11.6917ms)[39m[39m
-[32m✔ CT-LOG-12 tipo incorreto: e-mail número [90m(4.7885ms)[39m[39m
-[32m✔ CT-LOG-12 tipo incorreto: senha número [90m(12.0926ms)[39m[39m
-[32m✔ CT-LOG-12 tipo incorreto: e-mail objeto [90m(5.035ms)[39m[39m
-[32m✔ CT-LOG-13 mensagem não revela se o e-mail existe [90m(315.0677ms)[39m[39m
-[32m✔ CT-AUT-01 sem token: /api/payslips/latest [90m(4.4128ms)[39m[39m
-[32m✔ CT-AUT-01 sem token: /api/payslips [90m(5.1889ms)[39m[39m
-[32m✔ CT-AUT-02 cabeçalho malformado: "Bearer" [90m(5.0355ms)[39m[39m
-[32m✔ CT-AUT-02 cabeçalho malformado: "Bearer abc123" [90m(7.2848ms)[39m[39m
-[32m✔ CT-AUT-02 cabeçalho malformado: "Basic YW5hOjEyMw==" [90m(9.0299ms)[39m[39m
-[32m✔ CT-AUT-03 token adulterado [90m(463.6166ms)[39m[39m
-[32m✔ CT-AUT-04 token expirado [90m(15.1184ms)[39m[39m
-[32m✔ CT-AUT-05 token retorna somente os dados do dono [90m(550.3228ms)[39m[39m
-[33m⚠ CT-AUT-06 resposta não expõe dados internos [90m(228.9176ms)[39m # BUG-001[39m
-[32m✔ CT-AUT-09 parâmetro employeeId não troca o funcionário [90m(248.3502ms)[39m[39m
-[32m✔ CT-CON-01/02 Ana: holerite mais recente e valores [90m(621.8589ms)[39m[39m
-[32m✔ CT-CON-01 Bruno: holerite mais recente [90m(247.8868ms)[39m[39m
-[32m✔ CT-CON-03 Carla: mensagem informativa em /latest [90m(256.6122ms)[39m[39m
-[32m✔ CT-CON-04 Ana: lista ordenada, última versão por competência [90m(334.0705ms)[39m[39m
-[32m✔ CT-CON-05 Bruno: versão em rascunho não substitui a publicada [90m(229.0954ms)[39m[39m
-[32m✔ CT-CON-06 competência só com rascunho (2026-11) não aparece [90m(447.3216ms)[39m[39m
-[32m✔ CT-CON-07 Carla: lista vazia com mensagem [90m(248.2338ms)[39m[39m
-[33m⚠ CT-API-01 verbo PUT em /api/payslips deveria retornar 405 [90m(242.7178ms)[39m # BUG-003[39m
-[33m⚠ CT-API-01 verbo DELETE em /api/payslips deveria retornar 405 [90m(234.129ms)[39m # BUG-003[39m
-[33m⚠ CT-API-01 verbo POST em /api/payslips/latest deveria retornar 405 [90m(237.0841ms)[39m # BUG-003[39m
-[33m⚠ CT-API-02 GET em /api/auth/login deveria retornar 405 [90m(4.5361ms)[39m # BUG-003[39m
-[33m⚠ CT-API-03 JSON malformado no login deveria retornar 400 [90m(10.7039ms)[39m # BUG-002[39m
-[32m✔ CT-API-04 rota inexistente [90m(5.8706ms)[39m[39m
-[32m✔ CT-API-05 login sem corpo [90m(3.4639ms)[39m[39m
-[32m✔ CT-API-06 estrutura e tipos do holerite [90m(553.7664ms)[39m[39m
-[32m✔ CT-API-08 20 logins seguidos [90m(3179.6132ms)[39m[39m
-[34mℹ menor 115 ms, maior 398 ms[39m
-[34mℹ tests 44[39m
+[32m✔ CT-LOG-03 senha incorreta [90m(301.67ms)[39m[39m
+[32m✔ CT-LOG-04 caixa diferente [90m(298.9841ms)[39m[39m
+[32m✔ CT-LOG-05 espaço no final [90m(307.381ms)[39m[39m
+[32m✔ CT-LOG-06 senha vazia [90m(231.25ms)[39m[39m
+[32m✔ CT-LOG-07 e-mail não cadastrado [90m(10.7553ms)[39m[39m
+[32m✔ CT-LOG-08 e-mail em formato inválido [90m(7.9988ms)[39m[39m
+[32m✔ CT-LOG-09 e-mail vazio [90m(6.9863ms)[39m[39m
+[32m✔ CT-LOG-10 sem o campo senha [90m(8.1258ms)[39m[39m
+[32m✔ CT-LOG-11 sem o campo e-mail [90m(7.4124ms)[39m[39m
+[32m✔ CT-LOG-12 tipo incorreto: e-mail número [90m(7.4951ms)[39m[39m
+[32m✔ CT-LOG-12 tipo incorreto: senha número [90m(7.039ms)[39m[39m
+[32m✔ CT-LOG-12 tipo incorreto: e-mail objeto [90m(4.8091ms)[39m[39m
+[32m✔ CT-LOG-13 mensagem não revela se o e-mail existe [90m(422.8263ms)[39m[39m
+[32m✔ CT-AUT-01 sem token: /api/payslips/latest [90m(4.3109ms)[39m[39m
+[32m✔ CT-AUT-01 sem token: /api/payslips [90m(5.2135ms)[39m[39m
+[32m✔ CT-AUT-02 cabeçalho malformado: "Bearer" [90m(4.2119ms)[39m[39m
+[32m✔ CT-AUT-02 cabeçalho malformado: "Bearer abc123" [90m(5.3462ms)[39m[39m
+[32m✔ CT-AUT-02 cabeçalho malformado: "Basic YW5hOjEyMw==" [90m(8.3535ms)[39m[39m
+[32m✔ CT-AUT-03 token adulterado [90m(383.9212ms)[39m[39m
+[32m✔ CT-AUT-04 token expirado [90m(13.5813ms)[39m[39m
+[32m✔ CT-AUT-05 token retorna somente os dados do dono [90m(866.0588ms)[39m[39m
+[33m⚠ CT-AUT-06 resposta não expõe dados internos [90m(459.5149ms)[39m # BUG-001[39m
+[32m✔ CT-AUT-09 parâmetro employeeId não troca o funcionário [90m(401.4652ms)[39m[39m
+[32m✔ CT-CON-01/02 Ana: holerite mais recente e valores [90m(396.2099ms)[39m[39m
+[32m✔ CT-CON-01 Bruno: holerite mais recente [90m(535.8994ms)[39m[39m
+[32m✔ CT-CON-03 Carla: mensagem informativa em /latest [90m(227.5152ms)[39m[39m
+[32m✔ CT-CON-04 Ana: lista ordenada, última versão por competência [90m(392.7614ms)[39m[39m
+[32m✔ CT-CON-05 Bruno: versão em rascunho não substitui a publicada [90m(265.7656ms)[39m[39m
+[32m✔ CT-CON-06 competência só com rascunho (2026-11) não aparece [90m(340.9741ms)[39m[39m
+[32m✔ CT-CON-07 Carla: lista vazia com mensagem [90m(274.1705ms)[39m[39m
+[33m⚠ CT-API-01 verbo PUT em /api/payslips deveria retornar 405 [90m(427.8155ms)[39m # BUG-003[39m
+[33m⚠ CT-API-01 verbo DELETE em /api/payslips deveria retornar 405 [90m(376.0805ms)[39m # BUG-003[39m
+[33m⚠ CT-API-01 verbo POST em /api/payslips/latest deveria retornar 405 [90m(477.6732ms)[39m # BUG-003[39m
+[33m⚠ CT-API-02 GET em /api/auth/login deveria retornar 405 [90m(10.5796ms)[39m # BUG-003[39m
+[33m⚠ CT-API-03 JSON malformado no login deveria retornar 400 [90m(31.074ms)[39m # BUG-002[39m
+[32m✔ CT-API-04 rota inexistente [90m(5.319ms)[39m[39m
+[32m✔ CT-API-05 login sem corpo [90m(5.4008ms)[39m[39m
+[32m✔ CT-API-06 estrutura e tipos do holerite [90m(486.7335ms)[39m[39m
+[32m✔ CT-API-08 20 logins seguidos [90m(3799.8742ms)[39m[39m
+[34mℹ menor 150 ms, maior 245 ms[39m
+[33m⚠ EXP-API prefixo "bearer" em minúsculas deveria ser aceito (esquema HTTP não diferencia maiúsculas) [90m(239.2053ms)[39m # BUG-008[39m
+[32m✔ EXP-API token copiado antes do logout no site continua aceito (a confirmar: apenas registra) [90m(251.2066ms)[39m[39m
+[34mℹ status observado: 200[39m
+[33m⚠ EXP-API corpo acima do limite deveria retornar 413 [90m(9.3545ms)[39m # BUG-005[39m
+[33m⚠ EXP-API a resposta não deveria expor X-Powered-By [90m(6.5324ms)[39m # BUG-007[39m
+[34mℹ tests 48[39m
 [34mℹ suites 0[39m
-[34mℹ pass 38[39m
+[34mℹ pass 39[39m
 [34mℹ fail 0[39m
 [34mℹ cancelled 0[39m
 [34mℹ skipped 0[39m
-[34mℹ todo 6[39m
-[34mℹ duration_ms 11466.6755[39m
+[34mℹ todo 9[39m
+[34mℹ duration_ms 13934.7148[39m
 
 [31m✖ failing tests:[39m
 
 test at tests\api\api.test.js:128:1
-[33m⚠ CT-AUT-06 resposta não expõe dados internos [90m(228.9176ms)[39m # BUG-001[39m
+[33m⚠ CT-AUT-06 resposta não expõe dados internos [90m(459.5149ms)[39m # BUG-001[39m
   AssertionError [ERR_ASSERTION]: campo interno em /api/payslips/latest
       at TestContext.<anonymous> (C:\Users\Dell\Desktop\Projeto Holerite EspaçoAdolescer\holerites\holerites\tests\api\api.test.js:132:12)
       at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
@@ -64,14 +69,14 @@ test at tests\api\api.test.js:128:1
       at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
     generatedMessage: false,
     code: 'ERR_ASSERTION',
-    actual: '{"payslip":{"competence":"2026-10","version":2,"publishedAt":"2026-11-05T00:00:00.000Z","earnings":[{"description":"Salário base","amount":6500,"_id":"6b08892c27e9163527d9c3db"},{"description":"Ajuste retroativo","amount":350,"_id":"6b08892c27e9163527d9c3dc"}],"deductions":[{"description":"INSS","amount":585,"_id":"6b08892c27e9163527d9c3dd"},{"description":"IRRF","amount":520,"_id":"6b08892c27e9163527d9c3de"}],"grossPay":6850,"totalDeductions":1105,"netPay":5745},"message":null}',
+    actual: '{"payslip":{"competence":"2026-10","version":2,"publishedAt":"2026-11-05T00:00:00.000Z","earnings":[{"description":"Salário base","amount":6500,"_id":"6b0a1b7af6a228318eef704b"},{"description":"Ajuste retroativo","amount":350,"_id":"6b0a1b7af6a228318eef704c"}],"deductions":[{"description":"INSS","amount":585,"_id":"6b0a1b7af6a228318eef704d"},{"description":"IRRF","amount":520,"_id":"6b0a1b7af6a228318eef704e"}],"grossPay":6850,"totalDeductions":1105,"netPay":5745},"message":null}',
     expected: /"_id"|employeeId|passwordHash|"status"/,
     operator: 'doesNotMatch',
     diff: 'simple'
   }
 
 test at tests\api\api.test.js:180:3
-[33m⚠ CT-API-01 verbo PUT em /api/payslips deveria retornar 405 [90m(242.7178ms)[39m # BUG-003[39m
+[33m⚠ CT-API-01 verbo PUT em /api/payslips deveria retornar 405 [90m(427.8155ms)[39m # BUG-003[39m
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   404 !== 405
@@ -89,7 +94,7 @@ test at tests\api\api.test.js:180:3
   }
 
 test at tests\api\api.test.js:180:3
-[33m⚠ CT-API-01 verbo DELETE em /api/payslips deveria retornar 405 [90m(234.129ms)[39m # BUG-003[39m
+[33m⚠ CT-API-01 verbo DELETE em /api/payslips deveria retornar 405 [90m(376.0805ms)[39m # BUG-003[39m
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   404 !== 405
@@ -107,7 +112,7 @@ test at tests\api\api.test.js:180:3
   }
 
 test at tests\api\api.test.js:180:3
-[33m⚠ CT-API-01 verbo POST em /api/payslips/latest deveria retornar 405 [90m(237.0841ms)[39m # BUG-003[39m
+[33m⚠ CT-API-01 verbo POST em /api/payslips/latest deveria retornar 405 [90m(477.6732ms)[39m # BUG-003[39m
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   404 !== 405
@@ -125,7 +130,7 @@ test at tests\api\api.test.js:180:3
   }
 
 test at tests\api\api.test.js:185:1
-[33m⚠ CT-API-02 GET em /api/auth/login deveria retornar 405 [90m(4.5361ms)[39m # BUG-003[39m
+[33m⚠ CT-API-02 GET em /api/auth/login deveria retornar 405 [90m(10.5796ms)[39m # BUG-003[39m
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   404 !== 405
@@ -143,7 +148,7 @@ test at tests\api\api.test.js:185:1
   }
 
 test at tests\api\api.test.js:188:1
-[33m⚠ CT-API-03 JSON malformado no login deveria retornar 400 [90m(10.7039ms)[39m # BUG-002[39m
+[33m⚠ CT-API-03 JSON malformado no login deveria retornar 400 [90m(31.074ms)[39m # BUG-002[39m
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   
   500 !== 400
@@ -156,6 +161,60 @@ test at tests\api\api.test.js:188:1
     code: 'ERR_ASSERTION',
     actual: 500,
     expected: 400,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\api\api.test.js:216:1
+[33m⚠ EXP-API prefixo "bearer" em minúsculas deveria ser aceito (esquema HTTP não diferencia maiúsculas) [90m(239.2053ms)[39m # BUG-008[39m
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  401 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Dell\Desktop\Projeto Holerite EspaçoAdolescer\holerites\holerites\tests\api\api.test.js:219:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 401,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\api\api.test.js:227:1
+[33m⚠ EXP-API corpo acima do limite deveria retornar 413 [90m(9.3545ms)[39m # BUG-005[39m
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  500 !== 413
+  
+      at TestContext.<anonymous> (C:\Users\Dell\Desktop\Projeto Holerite EspaçoAdolescer\holerites\holerites\tests\api\api.test.js:229:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 500,
+    expected: 413,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\api\api.test.js:231:1
+[33m⚠ EXP-API a resposta não deveria expor X-Powered-By [90m(6.5324ms)[39m # BUG-007[39m
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'Express' !== null
+  
+      at TestContext.<anonymous> (C:\Users\Dell\Desktop\Projeto Holerite EspaçoAdolescer\holerites\holerites\tests\api\api.test.js:233:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Express',
+    expected: null,
     operator: 'strictEqual',
     diff: 'simple'
   }

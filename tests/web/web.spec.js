@@ -102,3 +102,13 @@ test('CT-AUT-08 logout encerra a sessão, inclusive após recarregar', async ({ 
   await expect(page.locator('#login')).toBeVisible();
   await expect(page.locator('#slip')).toBeHidden();
 });
+
+test('EXP-WEB sem rede, a tela exibe mensagem em português (BUG-006)', async ({ page, context }) => {
+  test.fail(true, 'BUG-006: a tela exibe "Failed to fetch"');
+  await page.goto('/');
+  await context.setOffline(true);
+  await page.fill('#email', 'ana@empresa.com');
+  await page.fill('#password', PASS);
+  await page.click('form button[type=submit]');
+  await expect(page.locator('#loginErr')).toHaveText(/conex|rede|servidor/i, { timeout: 5000 });
+});
