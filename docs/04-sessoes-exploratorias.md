@@ -45,7 +45,8 @@
 | 1 | Payload acima de 100 KB no login retorna `500 Internal Server Error` em vez de `413 Payload Too Large` | 1. Enviar `POST /api/auth/login` com `Content-Type: application/json` e campo `email` com ~200 KB.<br>2. Observar resposta `500` com `{"message":"Erro interno."}`. | Média | Sim (`BUG-005`) |
 | 2 | `OPTIONS /api/payslips/latest` e `GET /api/auth/login` retornam `404 Not Found` em vez de `405 Method Not Allowed` | 1. Executar `curl -i -X OPTIONS http://localhost:3000/api/payslips/latest` ou `curl -i http://localhost:3000/api/auth/login`.<br>2. Observar status `404` (`{"message":"Recurso não encontrado."}`). | Baixa | Não (evidência complementar ao `BUG-003`) |
 | 3 | Cabeçalho `X-Powered-By: Express` exposto nas respostas da API | 1. Consultar qualquer endpoint com `curl -i`.<br>2. Verificar o cabeçalho `X-Powered-By: Express`. | Baixa | Sim (`BUG-007`) |
-| 4 | Token JWT permanece válido na API mesmo após clicar em `Sair` no frontend | 1. Autenticar como Ana, copiar o token e clicar em `Sair` na interface.<br>2. Chamar `GET /api/payslips/latest` com `Authorization: Bearer <token>` e observar `200 OK`. | Baixa / Média | Registrar como observação / melhoria de revogação de sessão |
+| 4 | Token JWT permanece válido na API mesmo após clicar em `Sair` no frontend | 1. Autenticar como Ana, copiar o token e clicar em `Sair` na interface.<br>2. Chamar `GET /api/payslips/latest` com `Authorization: Bearer <token>` e observar `200 OK`. | Baixa / Média | Observação: **OBS-001** (decisão de design pendente) |
+| 5 | O prefixo `bearer` em minúsculas é rejeitado com `401` (o esquema de autenticação HTTP não diferencia maiúsculas) | 1. Autenticar como Ana e guardar o token.<br>2. Executar `curl -i -H "Authorization: bearer $TOKEN" http://localhost:3000/api/payslips/latest`.<br>3. Observar `401`. | Baixa | Sim: **BUG-008** |
 
 ### Conclusão da sessão (3 linhas)
 - **Cobertura (o que explorei):** verbos `HEAD` e `OPTIONS`, variações de URL, prefixo `bearer` minúsculo com token válido, parâmetros extras/?employeeId, reuso do token pós-logout, `Content-Type: text/plain`, payload de ~200 KB no login e rajada de 10 requisições seguidas.
@@ -82,3 +83,11 @@
 - **Cobertura (o que explorei):** comportamento offline e com servidor desligado no login, alteração e exclusão de chave no armazenamento da sessão (com e sem `F5`), troca de competência com servidor parado, responsivo `375 px` e zoom `200%`, `<script>alert(1)</script>`, duas abas simultâneas, botão Voltar após `Sair` e foco por teclado.
 - **Riscos que ainda vejo:** mensagens de erro de rede em inglês (`Failed to fetch`) expostas na UI e falta de revalidação de sessão no ato de abrir/trocar competência quando o item de sessão é removido sem recarregar a página.
 - **Confiança na interface (baixa/média/alta) e por quê:** **Média-alta** — sem execução de script, sessões isoladas entre abas, retorno bloqueado via Voltar após `Sair` e adaptação visual adequada, restando padronizar mensagens de erro de rede em português.
+
+---
+
+## Observações finais
+- **Durações:** EXP-API em dois blocos (16:12 às 16:30 e 20:46 às 20:51, cerca de 23 min); EXP-WEB em dois blocos (16:35 às 17:35 e 20:51 às 21:07).
+- **Verificações inconclusivas resolvidas:** as linhas de 16:14 e 16:30 (token vazio) foram repetidas às 20:46 com token válido.
+- **Não realizados:** navegação por teclado no seletor de competência, teste com leitor de tela e confirmação de rolagem horizontal com zoom de 200%.
+- **Evidências:** prints em `docs/evidencias/exploratorias/` e o documento `sessão-exploratório-api-me.docx` (o `.docx` registra o logout às 20:52 e as notas, às 20:51; diferença de um minuto entre os registros).
